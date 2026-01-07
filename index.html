@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسواق السعدي - السوبر ماركت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأساسيات */
+        :root {
+            --primary: #2A6B4E;
+            --secondary: #FF9F1C;
+            --accent: #34A853;
+            --light: #F8F9FA;
+            --dark: #1A3C2E;
+            --text: #333333;
+            --gray: #6C757D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* الهيدر */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-icon {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* القائمة */
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            display: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-menu li {
+            margin: 0 10px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 107, 78, 0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* الأقسام */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.3rem;
+            margin-bottom: 50px;
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            border-radius: 5px;
+        }
+        
+        /* العنوان */
+        .address-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .address-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .address-details h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .address-details p {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        /* خريطة المكان */
+        .map-section {
+            background: linear-gradient(to bottom, #f8fff8, #ffffff);
+        }
+        
+        .map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .map-wrapper {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+        
+        .map-btn {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(42, 107, 78, 0.3);
+        }
+        
+        .map-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(42, 107, 78, 0.4);
+        }
+        
+        /* أرقام التواصل */
+        .contact-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 35px 25px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: all 0.4s ease;
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+        
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+        
+        .contact-card p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        /* الإدارة */
+        .management-section {
+            background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+        }
+        
+        .management-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .management-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .management-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 8px solid #E8F5E9;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .management-avatar i {
+            font-size: 7rem;
+            color: white;
+        }
+        
+        .management-info h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .management-title {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            background-color: #E8F5E9;
+            padding: 8px 25px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        
+        .management-bio {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .management-nickname {
+            background: linear-gradient(to right, var(--secondary), #FFB74D);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(255, 159, 28, 0.3);
+        }
+        
+        /* منتجات مميزة */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 4rem;
+        }
+        
+        .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-content h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .product-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .product-badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+        
+        /* الفوتر */
+        footer {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(-5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .address-section {
+                padding: 35px 25px;
+            }
+            
+            .management-card {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-logo {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 8px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .map-frame {
+                height: 350px;
+            }
+            
+            .map-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .management-avatar {
+                width: 170px;
+                height: 170px;
+            }
+            
+            .management-avatar i {
+                font-size: 5rem;
+            }
+            
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-text .tagline {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .address-section {
+                padding: 30px 20px;
+            }
+            
+            .address-details h3 {
+                font-size: 1.5rem;
+            }
+            
+            .address-details p {
+                font-size: 1.1rem;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+            
+            .management-card {
+                padding: 30px 20px;
+            }
+            
+            .management-info h3 {
+                font-size: 1.7rem;
+            }
+            
+            .map-frame {
+                height: 300px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .logo-text h1 {
+                font-size: 1.7rem;
+            }
+            
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>أسواق السعدي</h1>
+                    <p class="tagline">جودة وسعر وخدمة.. كل ما تحتاجه لعائلتك</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القائمة -->
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-logo">أسواق السعدي</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#address" class="active"><i class="fas fa-map-marker-alt"></i> العنوان</a></li>
+                <li><a href="#map"><i class="fas fa-map"></i> خريطة المكان</a></li>
+                <li><a href="#contact"><i class="fas fa-phone"></i> اتصل بنا</a></li>
+                <li><a href="#management"><i class="fas fa-user-tie"></i> الإدارة</a></li>
+                <li><a href="#products"><i class="fas fa-store"></i> منتجاتنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- العنوان -->
+    <section id="address">
+        <div class="container">
+            <h2 class="section-title">عنوان المتجر</h2>
+            <div class="address-section">
+                <div class="address-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="address-details">
+                    <h3>أسواق السعدي - السوبر ماركت</h3>
+                    <p>العنوان: <span class="highlight">خورشيد - شارع السوق التوفيقية</span></p>
+                    <p>بجوار: <span class="highlight">صيدلية الدكتورة مها حسين محمد</span></p>
+                    <p>نتشرف بزيارتكم في أي وقت خلال ساعات العمل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- خريطة المكان -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2 class="section-title">خريطة المكان</h2>
+            <div class="map-container">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.325389056233!2d31.23326701511501!3d30.052872981877334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458409e8f0e4b01%3A0x3a7c15b37f2c1b5d!2sKhorcheid%2C%20El-Tawfikia%20St%2C%20Al%20Qalyubia%20Governorate!5e0!3m2!1sen!2seg!4v1649876543210!5m2!1sen!2seg" 
+                        class="map-frame"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <a href="https://maps.google.com/?q=خورشيد شارع السوق التوفقية بجوار صيدلية الدكتورة مها حسين محمد" target="_blank" class="map-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    افتح الخريطة في تطبيق خرائط جوجل
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- أرقام التواصل -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">اتصل بنا</h2>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>اتصل علينا</h3>
+                    <p>+20 101 234 5678</p>
+                    <p>+20 155 678 9012</p>
+                    <p>خدمة العملاء: 19008</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <h3>ساعات العمل</h3>
+                    <p>يومياً من 8 صباحاً حتى 12 منتصف الليل</p>
+                    <p>الجمعة: من 10 صباحاً حتى 12 منتصف الليل</p>
+                    <p>خدمة التوصيل: 24 ساعة</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3>خدماتنا</h3>
+                    <p>توصيل مجاني للمنازل (للمسافة القريبة)</p>
+                    <p>حسومات للعملاء الدائمين</p>
+                    <p>خدمة الطلبات الهاتفية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الإدارة -->
+    <section id="management" class="management-section">
+        <div class="container">
+            <h2 class="section-title">إدارة الأسواق</h2>
+            <div class="management-container">
+                <div class="management-card">
+                    <div class="management-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="management-info">
+                        <h3>أحمد السعدي</h3>
+                        <div class="management-title">المدير التنفيذي والمالك</div>
+                        <p class="management-bio">
+                            يمتلك خبرة تزيد عن 15 عاماً في إدارة أسواق التجزئة وتوفير أفضل المنتجات بجودة عالية وأسعار منافسة. 
+                            يحرص دائماً على تلبية احتياجات العملاء وتطوير الخدمات المقدمة لهم، مع الالتزام بأعلى معايير الجودة والنظافة.
+                        </p>
+                        <div class="management-nickname">الشهرة: أحمد الفلسطيني</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- منتجات مميزة -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-container">
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div class="product-content">
+                        <h4>فواكه وخضروات طازجة</h4>
+                        <p>أجود أنواع الفواكه والخضروات اليومية، مختارة بعناية من أفضل المزارع المحلية والعالمية.</p>
+                        <div class="product-badge">منتجات يومية</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="product-content">
+                        <h4>معلبات ومستلزمات</h4>
+                        <p>أشهر الماركات العالمية والمحلية من المواد الغذائية المعلبة والمستلزمات المنزلية الأساسية.</p>
+                        <div class="product-badge">أشهر الماركات</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="product-content">
+                        <h4>لحوم وأسماك طازجة</h4>
+                        <p>لحوم بقري ودواجن وأسماك طازجة يومياً، مع ضمان الجودة والسلامة الصحية.</p>
+                        <div class="product-badge">طازج يومياً</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="product-content">
+                        <h4>مخبوزات وحلويات</h4>
+                        <p>مخبوزات يومية طازجة وحلويات شرقية وغربية مصنوعة بأيدي أمهر الخبازين والحلوانيين.</p>
+                        <div class="product-badge">طازجة يومياً</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>أسواق السعدي</h3>
+                    <p>خورشيد - شارع السوق التوفقية، بجوار صيدلية الدكتورة مها حسين محمد.</p>
+                    <p>نسعى دائماً لتقديم أفضل المنتجات بأعلى جودة وأسعار مناسبة لجميع العملاء.</p>
+                    <p>نتشرف بخدمتكم على مدار الساعة.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#address"><i class="fas fa-chevron-left"></i> العنوان</a></li>
+                        <li><a href="#map"><i class="fas fa-chevron-left"></i> خريطة المكان</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                        <li><a href="#management"><i class="fas fa-chevron-left"></i> الإدارة</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-left"></i> منتجاتنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <p><i class="fas fa-phone"></i> الهاتف: +20 101 234 5678</p>
+                    <p><i class="far fa-clock"></i> العمل: 8 صباحاً - 12 منتصف الليل</p>
+                    <p><i class="fas fa-truck"></i> التوصيل: مجاني للمسافات القريبة</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 أسواق السعدي | تصميم وتطوير خصيصاً لأسواق السعدي</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تفعيل القائمة المتنقلة
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // تفعيل العنصر النشط في القائمة عند التمرير
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // تأثير التمرير على القائمة
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                nav.style.padding = '5px 0';
+            } else {
+                nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+                nav.style.padding = '15px 0';
+            }
+        });
+    </script>
+</body>
+</html>
