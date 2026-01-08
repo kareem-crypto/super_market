@@ -48,122 +48,13 @@
             padding: 0 15px;
         }
         
-        /* الهيرو سيكشن - صورة ممتدة على الشاشة */
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--light-text);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
-            z-index: 1;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
-            animation: fadeInUp 1.2s ease-out 0.5s both;
-        }
-        
-        .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--pure-white);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-            line-height: 1.2;
-        }
-        
-        .hero h1 span {
-            color: var(--accent-yellow);
-        }
-        
-        .hero p {
-            font-size: 1.6rem;
-            margin-bottom: 40px;
-            color: #f0f0f0;
-            font-weight: 300;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .shop-btn, .explore-btn {
-            display: inline-block;
-            padding: 18px 45px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-        
-        .shop-btn {
-            background-color: var(--accent-yellow);
-            color: var(--dark-text);
-            box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
-        }
-        
-        .shop-btn:hover {
-            background-color: transparent;
-            color: var(--accent-yellow);
-            border-color: var(--accent-yellow);
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(241, 196, 15, 0.5);
-        }
-        
-        .explore-btn {
-            background-color: transparent;
-            color: var(--pure-white);
-            border: 2px solid var(--pure-white);
-        }
-        
-        .explore-btn:hover {
-            background-color: var(--pure-white);
-            color: var(--dark-text);
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.2);
-        }
-        
         /* النافبار */
         header {
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             color: var(--dark-text);
             padding: 18px 0;
@@ -175,11 +66,6 @@
         
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { transform: translateY(60px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
         
@@ -209,6 +95,7 @@
             color: var(--primary-green);
         }
         
+        /* قائمة التنقل للكمبيوتر */
         .nav-links {
             display: flex;
             list-style: none;
@@ -283,6 +170,237 @@
             font-size: 0.8rem;
             font-weight: bold;
             box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3);
+        }
+        
+        /* زر القائمة (الهامبرجر) للموبايل */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+        
+        /* القائمة الجانبية للموبايل */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--pure-white);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 30px 30px;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-overlay.active {
+            display: block;
+        }
+        
+        .mobile-links {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .mobile-links li {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 12px 0;
+            display: block;
+            transition: var(--transition);
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .mobile-links a:hover {
+            color: var(--primary-green);
+            padding-right: 15px;
+        }
+        
+        .mobile-links a i {
+            margin-left: 10px;
+            color: var(--primary-green);
+        }
+        
+        .mobile-nav-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .mobile-nav-icons .cart-icon-container,
+        .mobile-nav-icons .user-icon-container {
+            font-size: 1.8rem;
+        }
+        
+        /* الهيرو سيكشن - صورة ممتدة على الشاشة */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            margin-top: 70px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1.2s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(60px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--pure-white);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-yellow);
+        }
+        
+        .hero p {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            color: #f0f0f0;
+            font-weight: 300;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .shop-btn, .explore-btn {
+            display: inline-block;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .shop-btn {
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
+        }
+        
+        .shop-btn:hover {
+            background-color: transparent;
+            color: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(241, 196, 15, 0.5);
+        }
+        
+        .explore-btn {
+            background-color: transparent;
+            color: var(--pure-white);
+            border: 2px solid var(--pure-white);
+        }
+        
+        .explore-btn:hover {
+            background-color: var(--pure-white);
+            color: var(--dark-text);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.2);
         }
         
         /* قسم المنتجات */
@@ -1167,8 +1285,13 @@
                 font-size: 2.5rem;
             }
             
+            /* إخفاء قائمة التنقل للكمبيوتر وإظهار زر الهامبرجر */
             .nav-links {
-                gap: 20px;
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
             }
             
             .admin-stats {
@@ -1178,13 +1301,11 @@
         
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            .hero {
+                margin-top: 80px;
             }
             
             .hero h1 {
@@ -1220,6 +1341,16 @@
             
             .admin-stats {
                 grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                right: 50%;
+                transform: translateX(50%);
             }
         }
         
@@ -1259,8 +1390,20 @@
                 grid-template-columns: 1fr;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
+            .logo h2 {
+                font-size: 1.6rem;
+            }
+            
+            .logo i {
+                font-size: 1.8rem;
+            }
+            
+            .scroll-top {
+                bottom: 25px;
+                left: 25px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
             }
         }
         
@@ -1289,6 +1432,8 @@
                     <i class="fas fa-store"></i>
                     <h2>أسواق السعدي</h2>
                 </div>
+                
+                <!-- قائمة التنقل للكمبيوتر -->
                 <ul class="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#products">المنتجات</a></li>
@@ -1296,6 +1441,7 @@
                     <li><a href="#admin">إدارة الطلبات</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
                 </ul>
+                
                 <div class="nav-icons">
                     <div class="cart-icon-container">
                         <i class="fas fa-shopping-basket cart-icon" id="cartIcon"></i>
@@ -1304,16 +1450,54 @@
                     <div class="user-icon-container">
                         <i class="fas fa-user user-icon" id="userIcon"></i>
                     </div>
+                    
+                    <!-- زر القائمة (الهامبرجر) للموبايل -->
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
+    <!-- القائمة الجانبية للموبايل -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-logo" style="text-align: center; margin-bottom: 40px;">
+            <i class="fas fa-store" style="font-size: 2.5rem; color: var(--primary-green); margin-bottom: 10px;"></i>
+            <h2 style="color: var(--primary-green); font-size: 1.8rem;">أسواق السعدي</h2>
+        </div>
+        
+        <ul class="mobile-links">
+            <li><a href="#home" onclick="closeMobileNav()"><i class="fas fa-home"></i> الرئيسية</a></li>
+            <li><a href="#products" onclick="closeMobileNav()"><i class="fas fa-shopping-bag"></i> المنتجات</a></li>
+            <li><a href="#videos" onclick="closeMobileNav()"><i class="fas fa-video"></i> الفيديوهات</a></li>
+            <li><a href="#admin" onclick="closeMobileNav()"><i class="fas fa-user-shield"></i> إدارة الطلبات</a></li>
+            <li><a href="#contact" onclick="closeMobileNav()"><i class="fas fa-phone"></i> اتصل بنا</a></li>
+        </ul>
+        
+        <div class="mobile-nav-icons">
+            <div class="cart-icon-container">
+                <i class="fas fa-shopping-basket cart-icon" id="cartIconMobile"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="user-icon-container">
+                <i class="fas fa-user user-icon" id="userIconMobile"></i>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background-color: var(--light-green); border-radius: 12px;">
+            <p style="color: var(--dark-text); font-size: 0.9rem; text-align: center;">
+                <strong>خدمة العملاء:</strong> 24/7
+            </p>
+        </div>
+    </div>
+
     <!-- الهيرو سيكشن - صورة كاملة الشاشة -->
     <section class="hero" id="home">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-fruits-and-vegetables-in-a-supermarket-39402-large.mp4" type="video/mp4">
-        </video>
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="أسواق السعدي" class="hero-image">
         <div class="hero-content">
             <h1>مرحباً بكم في <span>أسواق السعدي</span></h1>
             <p>أجود المنتجات، أفضل الأسعار، وتوصيل سريع إلى باب منزلك. تسوق الآن واستمتع بتجربة تسوق فريدة!</p>
@@ -1594,69 +1778,6 @@
                 image: "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 nonBoycott: false,
                 offer: false
-            },
-            {
-                id: 7,
-                name: "أرز مصري عالي الجودة",
-                description: "أرز مصري عالي الجودة، وزن 5 كيلو. طويل الحبة وسريع التحضير.",
-                price: 150,
-                category: "basics",
-                image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: true,
-                offer: true,
-                oldPrice: 180
-            },
-            {
-                id: 8,
-                name: "مياه صحية معدنية",
-                description: "مياه صحية معدنية، عبوات 6 × 1.5 لتر. نقية وصحية.",
-                price: 45,
-                category: "drinks",
-                image: "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: true,
-                offer: false
-            },
-            {
-                id: 9,
-                name: "بسكويت أوريو",
-                description: "بسكويت أوريو بالنكهة الأصلية، وزن 200 غرام. مقرمش ولذيذ.",
-                price: 25,
-                category: "snacks",
-                image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: false,
-                offer: true,
-                oldPrice: 30
-            },
-            {
-                id: 10,
-                name: "زيت دوار الشمس",
-                description: "زيت دوار الشمس، حجم 2 لتر، منتج مصري. صحي ومناسب للقلي.",
-                price: 85,
-                category: "basics",
-                image: "https://images.unsplash.com/photo-1536975700520-6dac8d7e5f3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: true,
-                offer: false
-            },
-            {
-                id: 11,
-                name: "عصير مانجو وفراولة",
-                description: "عصير مانجو وفراولة طبيعي، حجم 1 لتر. لذيذ ومنعش.",
-                price: 35,
-                category: "drinks",
-                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: true,
-                offer: true,
-                oldPrice: 40
-            },
-            {
-                id: 12,
-                name: "مكرونة إسباجتي إيطالية",
-                description: "مكرونة إسباجتي إيطالية، وزن 500 غرام. عالية الجودة.",
-                price: 20,
-                category: "basics",
-                image: "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                nonBoycott: true,
-                offer: false
             }
         ];
 
@@ -1674,20 +1795,6 @@
                 title: "منتجاتنا الطازجة اليومية",
                 description: "شاهد قسم الخضروات والفواكه الطازجة التي تصلنا يومياً.",
                 thumbnail: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-            },
-            {
-                id: 3,
-                title: "عروض اليوم الخاصة",
-                description: "اكتشف عروض وخصومات اليوم على مجموعة من المنتجات المميزة.",
-                thumbnail: "https://images.unsplash.com/photo-1606788075767-20b25ec7e8c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-            },
-            {
-                id: 4,
-                title: "منتجات غير مقاطعة",
-                description: "تعرف على المنتجات الوطنية وغير المقاطعة في أسواق السعدي.",
-                thumbnail: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
             }
         ];
@@ -1717,22 +1824,6 @@
                 total: 320,
                 status: "delivered",
                 items: ["أرز مصري", "زيت دوار الشمس", "بسكويت أوريو"]
-            },
-            {
-                id: 1004,
-                customer: "فاطمة علي",
-                date: "2023-10-14",
-                total: 95,
-                status: "cancelled",
-                items: ["مشروب سفن أب", "شوكولاتة كادبوري"]
-            },
-            {
-                id: 1005,
-                customer: "عمر يوسف",
-                date: "2023-10-13",
-                total: 210,
-                status: "delivered",
-                items: ["مكرونة إسباجتي", "عصير مانجو", "سكر أبيض"]
             }
         ];
 
@@ -1942,14 +2033,20 @@
         function setupEventListeners() {
             // فتح وإغلاق سلة المشتريات
             document.getElementById('cartIcon').addEventListener('click', openCart);
+            document.getElementById('cartIconMobile').addEventListener('click', openCart);
             document.getElementById('closeCart').addEventListener('click', closeCart);
             document.getElementById('continueShopping').addEventListener('click', closeCart);
             
             // تسجيل الدخول كمدير
             document.getElementById('userIcon').addEventListener('click', showLoginForm);
+            document.getElementById('userIconMobile').addEventListener('click', showLoginForm);
             document.getElementById('showLoginBtn').addEventListener('click', showLoginForm);
             document.getElementById('closeLogin').addEventListener('click', closeLoginForm);
             document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            
+            // القائمة الجانبية للموبايل
+            document.getElementById('menuToggle').addEventListener('click', toggleMobileNav);
+            document.getElementById('mobileNavOverlay').addEventListener('click', closeMobileNav);
             
             // زر التمرير للأعلى
             const scrollTopBtn = document.getElementById('scrollTop');
@@ -2037,11 +2134,13 @@
             renderCartItems();
             
             // تأثير عند الإضافة
-            const cartCount = document.querySelector('.cart-count');
-            cartCount.style.transform = 'scale(1.5)';
-            setTimeout(() => {
-                cartCount.style.transform = 'scale(1)';
-            }, 300);
+            const cartCount = document.querySelectorAll('.cart-count');
+            cartCount.forEach(count => {
+                count.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    count.style.transform = 'scale(1)';
+                }, 300);
+            });
             
             // عرض رسالة تأكيد
             alert(`تم إضافة ${product.name} إلى سلة التسوق الخاصة بك!`);
@@ -2049,9 +2148,11 @@
         
         // تحديث عداد السلة
         function updateCartCount() {
-            const cartCount = document.querySelector('.cart-count');
+            const cartCounts = document.querySelectorAll('.cart-count');
             const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
+            cartCounts.forEach(count => {
+                count.textContent = totalItems;
+            });
         }
         
         // عرض عناصر السلة
@@ -2127,6 +2228,7 @@
             renderCartItems();
             document.getElementById('cartOverlay').style.display = 'flex';
             document.body.style.overflow = 'hidden'; // منع التمرير عند فتح السلة
+            closeMobileNav(); // إغلاق القائمة الجانبية إذا كانت مفتوحة
         }
         
         // إغلاق سلة المشتريات
@@ -2135,10 +2237,40 @@
             document.body.style.overflow = 'auto'; // إعادة التمرير
         }
         
+        // فتح/إغلاق القائمة الجانبية للموبايل
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            mobileNav.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // إغلاق القائمة الجانبية للموبايل
+        function closeMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
         // عرض نموذج تسجيل الدخول
         function showLoginForm() {
             document.getElementById('loginOverlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            closeMobileNav(); // إغلاق القائمة الجانبية إذا كانت مفتوحة
         }
         
         // إغلاق نموذج تسجيل الدخول
